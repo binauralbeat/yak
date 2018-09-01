@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+	<title>yak</title>
+  </head>
+  <body>
+
+{% block main_stuff %}
+
+
+<!-- <img src="{% static 'history/images/dire_straits.jpg' %}" alt="dire straits"> -->
+{% endblock main_stuff %}
+    <h1>yak</h1>
+	{% if user.is_authenticated %}
+	<link rel="stylesheet" type="text/css" href="{% static 'yktrkr/styles.css' %}" />
+{% include "navbar.html" with nav_location=view.location %}
+    <h1>yak</h1>
+    <a href="{% url 'yktrkr:logout' %}">Logout</a>
+    {% else %}
+    <h1>yak</h1>
+    <div><a href="{% url 'yktrkr:register' %}">Register</a></div>
+    <div><a href="{% url 'yktrkr:login' %}">Login</a></div>
+    {% endif %}
+
+  </body>
+</html>
