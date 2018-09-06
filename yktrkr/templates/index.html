@@ -3,26 +3,38 @@
 <html>
   <head>
     <meta charset="utf-8">
-	<title>yak</title>
+	<title>Bangazon</title>
   </head>
   <body>
 
 {% block main_stuff %}
+<div id="container_1">
+  <div id="box_1">
+    <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
+  </div>
+  <div id="box_2">
 
+  </div>
+</div>
 
-<!-- <img src="{% static 'history/images/dire_straits.jpg' %}" alt="dire straits"> -->
 {% endblock main_stuff %}
-    <h1>yak</h1>
+
 	{% if user.is_authenticated %}
 	<link rel="stylesheet" type="text/css" href="{% static 'yktrkr/styles.css' %}" />
+{% comment %} Including navbar in each template so we can pass the location to it each time {% endcomment %}
 {% include "navbar.html" with nav_location=view.location %}
-    <h1>yak</h1>
-    <a href="{% url 'yktrkr:logout' %}">Logout</a>
+    <h1>Bangazon says... hello {{ user.username }}!</h1>
     {% else %}
-    <h1>yak</h1>
-    <div><a href="{% url 'yktrkr:register' %}">Register</a></div>
+
     <div><a href="{% url 'yktrkr:login' %}">Login</a></div>
     {% endif %}
-
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          {% block content %}
+          {% endblock content %}
+        </div>
+      </div>
+    </div>
   </body>
 </html>
