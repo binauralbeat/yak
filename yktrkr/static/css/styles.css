@@ -14,10 +14,13 @@ body {
 
 }
 
+
+
 h1 {
     color: #fff700;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 200px;
+    transform: translate(3%, 0%)
 
 }
 
@@ -31,7 +34,7 @@ h1 {
 
 .smaller_img {
     width: 13%;
-    transform: translate(-35%, 0%);
+    transform: translate(-30%, 0%);
 }
 
 .medium_font {
@@ -45,6 +48,12 @@ h1 {
     transform: translate(16%, 0%)
 }
 #box_2 {
+    background-color: rgba(5, 5, 5, 0.3);
+    border-radius: 20px;
+    width: 75%;
+    transform: translate(16%, 0%)
+}
+#box_3 {
     background-color: rgba(5, 5, 5, 0.3);
     border-radius: 20px;
     width: 75%;
@@ -65,4 +74,8 @@ h1 {
 
 .center {
     transform: translate(25%, 0%)
+}
+
+.background_brown {
+    background-color: rgb(83, 59, 30, .8)
 }

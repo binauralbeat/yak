@@ -14,17 +14,19 @@
                 <div id="box_1">
                   <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
                 </div>
+                <div class="box_3">
                 {% include 'nav.html' %}
+                </div>
                 <div id="box_2">
                         <h2 class="text_center yellow yak_font bigger_font">sites</h2>
-                    <p>{{site_name}}</p>
-                        {% for site in level_data %}
-                        <div>
-                            <p>{{site_name}}</p>
-                        </div>
+                    <p class="text_center yellow no_decor bigger_font yak_font">{{site_name}} {{measurment_type}} {{water_level}}</p>
+                        {% for site_name in level_data %}
+
+                            <p class="text_center yellow no_decor">{{site_name}}</p>
+
                         {% endfor %}
                 </div>
-              </div>
+        </div>
 
 </body>
 </html>

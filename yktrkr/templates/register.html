@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+    </head>
+
+    <body>
+
+            <div id="container_1">
+                    <div id="box_1">
+                      <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
+                    </div>
+                    {% include 'nav.html' %}
+                    <div id="box_2">
+                            <h2 class="text_center yellow yak_font">Register</h2>
+
+                            {% if registered %}
+                            <strong class="text_center yellow yak_font">Thank you for registering!</strong>
+                            <a class="text_center yellow yak_font" href="{% url 'yktrkr:index' %}">Return to the homepage.</a><br />
+                            {% else %}
+
+                            <form class="text_center yellow yak_font" id="user_form" method="post" action="{% url 'yktrkr:register' %}"
+                                    enctype="multipart/form-data">
+
+                                {% csrf_token %}
+
+                                <!-- Display each form. The as_p method wraps each element in a paragraph
+                                     (<p>) element. This ensures each element appears on a new line,
+                                     making everything look neater. -->
+                                {{ user_form.as_p }}
+                                {{ customer_form.as_p}}
+                                <!-- Provide a button to click to submit the form. -->
+                                <input class="text_center yak_font" type="submit" name="submit" value="Register" />
+                            </form>
+                            {% endif %}
+                    </div>
+                  </div>
+        <
+    </body>
+</html>
