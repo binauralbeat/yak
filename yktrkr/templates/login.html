@@ -1,21 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bangazon</title>
+        <title>yak</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
     </head>
 
     <body>
-        <h1>Login to Bangazon</h1>
+            {% block main_stuff %}
 
-        <form id="login_form" method="post" action="{% url 'website:login' %}">
-            {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />
-            <br />
-            Password: <input type="password" name="password" value="" size="50" />
-            <br />
 
-            <input type="submit" value="submit" />
-        </form>
+            <div id="container_1">
+              <div id="box_1">
+                <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
+              </div>
+              {% include 'nav.html' %}
+              <div id="box_2">
+                    <form class="center yellow yak_font" id="login_form" method="post" action="{% url 'yktrkr:login' %}">
+                            {% csrf_token %}
+                            Username: <input type="text" name="username" value="" size="50" />
+                            <br />
+                            Password: <input type="password" name="password" value="" size="50" />
+                            <br />
+
+                            <input class=" yak_font no_decor" type="submit" value="submit" />
+                        </form>
+              </div>
+            </div>
+
+            {% endblock main_stuff %}
+
+
 
     </body>
 </html>

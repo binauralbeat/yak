@@ -1,21 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>levels</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
 </head>
 <body>
-        {% block content %}
-        <h2>sites</h2>
+        <div id="container_1">
+                <div id="box_1">
+                  <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
+                </div>
+                {% include 'nav.html' %}
+                <div id="box_2">
+                        <h2 class="text_center yellow yak_font bigger_font">sites</h2>
+                    <p>{{site_name}}</p>
+                        {% for site in level_data %}
+                        <div>
+                            <p>{{site_name}}</p>
+                        </div>
+                        {% endfor %}
+                </div>
+              </div>
 
-        {% for site in level_data %}
-        <div>
-            <p>{{site_name}}</p>
-        </div>
-        {% endfor %}
-
-        {% endblock %}
 </body>
 </html>

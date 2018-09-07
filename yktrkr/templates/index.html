@@ -1,40 +1,36 @@
-{% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-	<title>Bangazon</title>
-  </head>
-  <body>
 
-{% block main_stuff %}
-<div id="container_1">
-  <div id="box_1">
-    <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
-  </div>
-  <div id="box_2">
+<head>
+  <meta charset="utf-8">
+  <title>yak</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
 
-  </div>
-</div>
+<body>
 
-{% endblock main_stuff %}
+  {% block main_stuff %}
 
-	{% if user.is_authenticated %}
-	<link rel="stylesheet" type="text/css" href="{% static 'yktrkr/styles.css' %}" />
-{% comment %} Including navbar in each template so we can pass the location to it each time {% endcomment %}
-{% include "navbar.html" with nav_location=view.location %}
-    <h1>Bangazon says... hello {{ user.username }}!</h1>
-    {% else %}
 
-    <div><a href="{% url 'yktrkr:login' %}">Login</a></div>
-    {% endif %}
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-          {% block content %}
-          {% endblock content %}
-        </div>
-      </div>
+  <div id="container_1">
+    <div id="box_1">
+      <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
     </div>
-  </body>
+    {% include "nav.html" %}
+
+    <div id="box_2">
+        {% if user.is_authenticated %}
+        <h1>{{ user.username }}!</h1>
+        {% else %}
+
+        <div class="text_center yellow"><a class="text_center yellow bigger_font no_decor yak_font" href="{% url 'yktrkr:login' %}">Login</a></div>
+        {% endif %}
+    </div>
+  </div>
+  {% endblock main_stuff %}
+
+
+</body>
+
 </html>
