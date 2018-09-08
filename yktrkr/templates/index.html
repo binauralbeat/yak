@@ -1,59 +1,60 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>yak</title>
-        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-      </head>
-  <body>
 
-{% block main_stuff %}
+<head>
+  <meta charset="utf-8">
+  <title>yak</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
 
+<body>
 
-{% endblock main_stuff %}
-
+  {% block main_stuff %}
 
 
-	{% if user.is_authenticated %}
-	<link rel="stylesheet" type="text/css" href="{% static 'website/styles.css' %}" />
+  {% endblock main_stuff %}
+
+
+
+  {% if user.is_authenticated %}
   <div id="container_1">
-      <div id="box_1">
-        <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
-      </div>
-      <div id="box_3">
+    <div id="box_1">
+      <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
+    </div>
+    <div id="box_3">
       {% include "nav.html" with nav_location=view.location %}
-      </div>
-      <div id="box_2">
-        <h2 class="yellow text_center yak_font bigger_font">{{ user.username }}!</h2>
-        <a class="yellow text_center yak_font bigger_text" href="{% url 'yktrkr:logout' %}">Logout</a>
+    </div>
+    <div id="box_2">
+      <h2 class="yellow text_center yak_font bigger_font">{{ user.username }}!</h2>
+      <h2 class="yellow text_center yak_font bigger_font">These are your saved sites!</h2>
 
 
-      </div>
+    </div>
   </div>
 
-    {% else %}
-    <link rel="stylesheet" type="text/css" href="{% static 'website/styles.css' %}" />
+  {% else %}
   <div id="container_1">
-      <div id="box_1">
-        <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
-      </div>
-      <div id="box_2">
-        <div><a class="yellow yak_font bigger_font no_decor text_center" href="{% url 'yktrkr:register' %}">Register</a></div>
-        <div><a class="yellow yak_font bigger_font no_decor text_center" href="{% url 'yktrkr:login' %}">Login</a></div>
+    <div id="box_1">
+      <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
+    </div>
+    <div id="box_2">
+      <div><a class="yellow yak_font bigger_font no_decor text_center" href="{% url 'yktrkr:register' %}">Register</a></div>
+      <div><a class="yellow yak_font bigger_font no_decor text_center" href="{% url 'yktrkr:login' %}">Login</a></div>
 
 
-      </div>
+    </div>
   </div>
 
-    {% endif %}
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-          {% block content %}
-          {% endblock content %}
-        </div>
+  {% endif %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        {% block content %}
+        {% endblock content %}
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
