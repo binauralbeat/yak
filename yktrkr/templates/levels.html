@@ -1,6 +1,7 @@
-{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,22 +10,27 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
 </head>
+
 <body>
-        <div id="container_1">
-                <div id="box_1">
-                  <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
-                </div>
-                {% include 'nav.html' %}
-                <div id="box_2">
-                        <h2 class="text_center yellow yak_font bigger_font">sites</h2>
-                    <p>{{site_name}}</p>
-                        {% for site in level_data %}
-                        <div>
-                            <p>{{site_name}}</p>
-                        </div>
-                        {% endfor %}
-                </div>
-              </div>
+    <div id="container_1">
+        <div id="box_1">
+            <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
+        </div>
+        <div id="box_3">
+            {% include 'nav.html' with nav_location=view.location %}
+        </div>
+        <div id="box_2">
+            <h2 class="text_center yellow yak_font bigger_font">sites</h2>
+            <p class="text_center yellow no_decor bigger_font yak_font">{{site_name}}: {{measurment_type}}
+                {{water_level}}</p>
+            {% for site_name in level_data %}
+
+            <p class="text_center yellow no_decor">{{site_name}}</p>
+
+            {% endfor %}
+        </div>
+    </div>
 
 </body>
+
 </html>

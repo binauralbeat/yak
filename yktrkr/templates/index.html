@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 
@@ -13,24 +13,48 @@
   {% block main_stuff %}
 
 
+  {% endblock main_stuff %}
+
+
+
+  {% if user.is_authenticated %}
   <div id="container_1">
     <div id="box_1">
       <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
     </div>
-    {% include "nav.html" %}
-
+    <div id="box_3">
+      {% include "nav.html" with nav_location=view.location %}
+    </div>
     <div id="box_2">
-        {% if user.is_authenticated %}
-        <h1>{{ user.username }}!</h1>
-        {% else %}
+      <h2 class="yellow text_center yak_font bigger_font">{{ user.username }}!</h2>
+      <h2 class="yellow text_center yak_font bigger_font">These are your saved sites!</h2>
 
-        <div class="text_center yellow"><a class="text_center yellow bigger_font no_decor yak_font" href="{% url 'yktrkr:login' %}">Login</a></div>
-        {% endif %}
+
     </div>
   </div>
-  {% endblock main_stuff %}
+
+  {% else %}
+  <div id="container_1">
+    <div id="box_1">
+      <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
+    </div>
+    <div id="box_2">
+      <div><a class="yellow yak_font bigger_font no_decor text_center" href="{% url 'yktrkr:register' %}">Register</a></div>
+      <div><a class="yellow yak_font bigger_font no_decor text_center" href="{% url 'yktrkr:login' %}">Login</a></div>
 
 
+    </div>
+  </div>
+
+  {% endif %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        {% block content %}
+        {% endblock content %}
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
