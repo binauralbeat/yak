@@ -18,6 +18,10 @@ def water_levels(request):
     one_level_further_stage = ''
     one_level_further_deets =''
     final_data = ''
+    site_name = ''
+    water_level = ''
+    measurment_type = ''
+
     for idx in range(0, len(sliced)):
 
          one_level_further = sliced[idx]['sourceInfo']['siteName']
@@ -25,21 +29,25 @@ def water_levels(request):
          one_level_further_deets = sliced[idx]['variable']['variableName']
 
          combo_data = one_level_further + ': ' + one_level_further_deets + ' '
-         final_data += combo_data + one_level_further_stage + '    '
+         final_data = combo_data + one_level_further_stage + ' '
+
+         if "HARPETH" in final_data:
 
 
 
 
-    level_data = (level_data_raw['value']['timeSeries'][49]['sourceInfo']['siteName'])
-    level_data_stage = (level_data_raw['value']['timeSeries'][49]['values'][0]['value'][0]['value'])
-    data_deets = (level_data_raw['value']['timeSeries'][49]['variable']['variableName'])
 
 
-    idx_num = str(idx)
-    site_name = str(final_data)
-    water_level = str(one_level_further_stage)
-    measurment_type = str(one_level_further_deets)
+    # level_data = (level_data_raw['value']['timeSeries'][49]['sourceInfo']['siteName'])
+    # level_data_stage = (level_data_raw['value']['timeSeries'][49]['values'][0]['value'][0]['value'])
+    # data_deets = (level_data_raw['value']['timeSeries'][49]['variable']['variableName'])
 
 
-    return render(request, 'levels.html', {'idx_num': idx_num,'site_name': site_name, 'water_level': water_level, 'measurment_type': measurment_type, 'large_data': large_data})
+            idx_num = str(idx)
+            site_name += str(final_data)
+            water_level += str(one_level_further_stage)
+            measurment_type += str(one_level_further_deets)
+
+
+    return render(request, 'levels.html', { 'idx_num': idx_num,'site_name': site_name, 'water_level': water_level, 'measurment_type': measurment_type, 'large_data': large_data})
 
