@@ -80,3 +80,7 @@ h1 {
 .background_brown {
     background-color: rgb(83, 59, 30, .8)
 }
+
+.margin_top {
+    margin-top: 25px;
+}

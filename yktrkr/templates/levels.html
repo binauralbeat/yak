@@ -20,18 +20,20 @@
             {% include 'nav.html' with nav_location=view.location %}
         </div>
         <div id="box_2">
-                <form class="text_center yak_font" action="/search/" method="get">
-                    <input type="text" name="q">
+                <form class="text_center yak_font margin_top" action="/levels" method="get">
+                    {% csrf_token %}
+                    <input type="text" name="q" value="{{ query }}">
                     <input type="submit" value="Search">
                 </form>
             <h2 class="text_center yellow yak_font bigger_font">sites</h2>
-            <p class="text_center yellow no_decor bigger_font yak_font">{{site_name}}
-                </p>
-            {% for site_name in level_data %}
 
-            <p class="text_center yellow no_decor">{{site_name}}</p>
+            <ul>
+            <li class="text_center yellow no_decor bigger_font yak_font">{{site_name}}
+            </li>
+            </ul>
 
-            {% endfor %}
+
+
         </div>
     </div>
 
