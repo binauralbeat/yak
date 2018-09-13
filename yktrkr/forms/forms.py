@@ -4,6 +4,7 @@ from django import forms
 # from website.models import Category
 from yktrkr.models import CustomerRegistration
 
+
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
@@ -20,13 +21,14 @@ class CustomerForm(forms.ModelForm):
 
 
 
-# class CategoryForm(forms.ModelForm):
-#     '''
-#     Category Form
-#     Author: Deanna Vickers
-#     Purpose: Create form on website app to add categories
-#     '''
 
-#     class Meta:
-#         model = Category
-#         fields = ('name',)
+
+class SearchForm(forms.Form):
+
+	"""
+	Author: Meghan Debity
+	Purpose: Create form model for product search feature
+	"""
+
+	search_bar = forms.CharField(max_length = 25)
+
