@@ -8,6 +8,11 @@ urlpatterns = [
     url(r'^logout$', views.user_logout, name='logout'),
     url(r'^login$', views.user_view.login_user, name='login'),
     url(r'^register$', views.register, name='register'),
-    url(r'^levels$', views.water_lev_view.water_levels, name='levels')
+    url(r'^levels$', views.water_lev_view.water_levels, name='levels'),
+    url(r'^launch$', views.boat_launch_view.boat_ramps, name='launch'),
+    url(r'^favorites$', views.favorites_view.fav, name='favorites'),
+    url(r'^fav_post$', views.favorites_view.favs_post, name='fav_post'),
+    # url(r'^fav_list$', views.favorites_view.favs, name='favs'),
+
 
 ]
