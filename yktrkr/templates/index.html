@@ -10,13 +10,6 @@
 
 <body>
 
-  {% block main_stuff %}
-
-
-  {% endblock main_stuff %}
-
-
-
   {% if user.is_authenticated %}
   <div id="container_1">
     <div id="box_1">
@@ -28,6 +21,11 @@
     <div id="box_2">
       <h2 class="yellow text_center yak_font bigger_font">{{ user.username }}!</h2>
       <h2 class="yellow text_center yak_font bigger_font">These are your saved sites!</h2>
+
+      {% for site in sites %}
+      <p class=" yellow">{{sites.site_name}}</p>
+      {% endfor %}
+
 
 
     </div>

@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <div id="container_1">
+                <div id="box_1">
+                    <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
+                </div>
+                <div id="box_3">
+                    {% include 'nav.html' with nav_location=view.location %}
+                </div>
+                <div id="box_2">
+
+
+                   <p class="yellow"> {{go_launch}} {{length_data}}</p>
+
+
+
+                </div>
+            </div>
+
+
+</body>
+</html>

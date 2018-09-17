@@ -90,3 +90,10 @@ def user_logout(request):
     # Take the user back to the homepage. Is there a way to not hard code
     # in the URL in redirects?????
     return HttpResponseRedirect('/')
+
+def delete_user(request, pk):
+    """Displays template for deleting a computer
+    Author: Erin Meaker"""
+    user = get_object_or_404(User, pk=pk)
+    user.delete()
+    return redirect('logout')

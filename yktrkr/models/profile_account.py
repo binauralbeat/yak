@@ -5,10 +5,7 @@ from django.db.models import *
 
 
 class CustomerRegistration(models.Model):
-	'''
-	Author: Meghan Debity
-	Purpose: Model for buying and selling user(s)
-	'''
+
 	street = models.CharField(max_length=30)
 	city = models.CharField(max_length=30)
 	state = models.CharField(max_length=10)
