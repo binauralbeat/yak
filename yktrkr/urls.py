@@ -1,4 +1,6 @@
 from django.conf.urls import url
+from django.urls import path
+
 
 from . import views
 
@@ -12,6 +14,8 @@ urlpatterns = [
     url(r'^launch$', views.boat_launch_view.boat_ramps, name='launch'),
     url(r'^favorites$', views.favorites_view.fav, name='favorites'),
     url(r'^favorite_list$', views.favorites_view.favs_post, name='favorite_list'),
+    path('favorites/<int:pk>/delete/', views.favorites_view.favorite_delete_view, name='favorite_delete'),
+
 
 
 ]

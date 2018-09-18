@@ -23,16 +23,14 @@ def fav (request):
     return render(request, 'index.html', {})
 
 def favs_post (request):
+    # the following is for getting the api data
     response = requests.get('https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&stateCd=tn&parameterCd=00065&siteType=ST&siteStatus=all')
-
     level_data_raw = response.json()
     large_data = level_data_raw['value']
     site_name_2 = (large_data['timeSeries'])
     sliced = site_name_2[0:500:1]
-    sites_dict = defaultdict(list)
+    # bellow is for getting the db data
     sites = Site.objects.all()
-    name_list = ''
-    name = ''
     stream = []
     for site in sites:
         stream.append(site)
@@ -40,12 +38,11 @@ def favs_post (request):
             water = u.site_name
             print(water, 'line 45')
 
-    for name in sites:
-        names = name
 
 
 
 
+# these are for later use
     one_level_further = ''
     one_level_further_stage = ''
     one_level_further_deets =''
@@ -55,12 +52,10 @@ def favs_post (request):
     measurment_type = ''
     site_list = ''
     # print(sites)
-    for x in sites:
-        one_site = x
-        # print(one_site)
 
 
 
+# bellow is for digging into api to level of desired data
     for idx in range(0, len(sliced)):
 
          one_level_further = sliced[idx]['sourceInfo']['siteName']
@@ -72,9 +67,14 @@ def favs_post (request):
         #  print(final_data)
          if str(water) in final_data:
             site_list = final_data
-            # print(site_list, '79')
+            print(site_list, '79')
 
     # print(site_list)
 
     return render(request, 'favorites_list.html', {'stream': stream})
 
+def favorite_delete_view(request, pk):
+
+    stream = get_object_or_404(Site, pk=pk)
+    stream.delete()
+    return redirect('yktrkr:levels')

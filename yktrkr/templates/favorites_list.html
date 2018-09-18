@@ -20,7 +20,9 @@
         <div id="box_2">
         {% for site in stream  %}
             <ul>
-        <li class="yellow yak_font bigger_font text_center">{{site.site_name}} <button>DELETE</button></li>
+        <li class="yellow yak_font bigger_font text_center">{{site.site_name}} <a class="no_decor yellow" href="{% url 'yktrkr:favorite_delete' pk=site.pk %}">-Delete</a></li>
+
+
     </ul>
         {% endfor %}
     </div>
