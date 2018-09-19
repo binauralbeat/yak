@@ -20,10 +20,10 @@
     </div>
     <div id="box_2">
       <h2 class="yellow text_center yak_font bigger_font">{{ user.username }}!</h2>
-      <h2 class="yellow text_center yak_font bigger_font">These are your saved sites!</h2>
+      <a href="{% url 'yktrkr:favorite_list' %}" class="yellow text_center yak_font bigger_font">These are your saved sites!</a>
 
       {% for site in sites %}
-      <p class=" yellow">{{sites.site_name}}</p>
+      <p class=" yellow">{{site_list}}</p>
       {% endfor %}
 
 

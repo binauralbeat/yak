@@ -43,8 +43,8 @@ def water_levels(request):
          if str(query) in final_data:
             # for x in final_data:
                 idx_num = str(idx)
-                site_name += str(final_data)
-                just_name = str(one_level_further)
+                site_name = str(final_data)
+                just_name = str(one_level_further_stage)
                 measurment_type += str(one_level_further_deets)
 
 
