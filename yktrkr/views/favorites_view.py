@@ -36,7 +36,7 @@ def favs_post (request):
         stream.append(site)
         for u in stream:
             water = u.site_name
-            print(water, 'line 45')
+            print(water, 'line39')
 
 
 
@@ -57,24 +57,34 @@ def favs_post (request):
 
 # bellow is for digging into api to level of desired data
     for idx in range(0, len(sliced)):
-
+         data_list = []
          one_level_further = sliced[idx]['sourceInfo']['siteName']
          one_level_further_stage = sliced[idx]['values'][0]['value'][0]['value']
          one_level_further_deets = sliced[idx]['variable']['variableName']
 
          combo_data = one_level_further + ': ' + one_level_further_deets + ' '
          final_data = combo_data + one_level_further_stage + ' '
-        #  print(final_data)
-         if str(water) in final_data:
-            site_list = final_data
-            print(site_list, '79')
+         for l in final_data:
+            data_list.append(final_data)
+            # print(data_list)
+         stream_list = []
+        #  print(final_data
+
+         if str(water) in data_list:
+             stream_list.append(final_data)
+             print(stream_list)
+
+             for i in stream_list:
+
+                site_list = i
+                print(i,'79')
 
     # print(site_list)
 
-    return render(request, 'favorites_list.html', {'stream': stream})
+    return render(request, 'favorites_list.html', {'stream': stream, 'final_data': final_data})
 
 def favorite_delete_view(request, pk):
 
     stream = get_object_or_404(Site, pk=pk)
     stream.delete()
-    return redirect('yktrkr:levels')
+    return redirect('yktrkr:favorite_list')
