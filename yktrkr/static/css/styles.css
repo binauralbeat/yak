@@ -84,3 +84,15 @@ h1 {
 .margin_top {
     margin-top: 25px;
 }
+
+.brown_border {
+    border-style: solid;
+    border-color: rgb(83, 59, 30, .8);
+    border-radius: 10px;
+    border-width: 10px;
+}
+
+.move_it {
+    transform: translate(50%, 0%);
+    margin: 20px;
+}
