@@ -5,6 +5,10 @@ from django.db.models import *
 
 
 class Site(models.Model):
+    '''
+    this model is intended to be used for storing a favorites list
+    comprised of river data that the user has selected
+    '''
     site_name = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

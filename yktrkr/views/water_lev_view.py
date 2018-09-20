@@ -8,17 +8,21 @@ from django.db.models import Q
 import requests
 import json
 import numpy as np
-
+import os
+# just rendering a search form
 def search_form(request):
 
     return render(request, 'levels.html')
-
+# accessing the USGS NWSI database
 def water_levels(request):
+    # initial api call
     response = requests.get('https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&stateCd=tn&parameterCd=00065&siteType=ST&siteStatus=all')
     level_data_raw = response.json()
     large_data = level_data_raw['value']
     site_name_2 = (large_data['timeSeries'])
+    # limiting results to 500 for demo day
     sliced = site_name_2[0:500:1]
+    # predefining variables for later use
     one_level_further = ''
     one_level_further_stage = ''
     one_level_further_deets =''
@@ -27,19 +31,20 @@ def water_levels(request):
     water_level = ''
     measurment_type = ''
     just_name = ''
+    # creating a variable to hold search input
     query = request.GET.get('q')
 
 
-
+    # filtering down to the keys needed from USGS api
     for idx in range(0, len(sliced)):
 
          one_level_further = sliced[idx]['sourceInfo']['siteName']
          one_level_further_stage = sliced[idx]['values'][0]['value'][0]['value']
          one_level_further_deets = sliced[idx]['variable']['variableName']
-
+        # combining filtered data
          combo_data = one_level_further + ': ' + one_level_further_deets + ' '
          final_data = combo_data + one_level_further_stage + ' '
-
+        # comparing filterd data to search input. if match present return results
          if str(query) in final_data:
             # for x in final_data:
                 idx_num = str(idx)

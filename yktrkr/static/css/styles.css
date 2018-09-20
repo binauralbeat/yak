@@ -65,6 +65,14 @@ h1 {
     color: #fff700;
 }
 
+.hide {
+    display: hide;
+}
+
+.show {
+    display: show;
+}
+
 .bigger_font {
     font-size: 30px;
 }

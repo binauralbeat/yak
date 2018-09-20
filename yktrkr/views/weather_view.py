@@ -7,7 +7,10 @@ from django.db.models import Q
 import requests
 import json
 
-
+# this just loads the weather.html template
 def weather (request):
+    '''
+    this does nothing but render a template
+    '''
 
     return render(request, 'weather.html')

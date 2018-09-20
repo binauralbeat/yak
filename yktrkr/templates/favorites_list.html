@@ -22,8 +22,11 @@
         </div>
         <div class="background-brown" id="box_2">
         {% for site in stream  %}
+            {% if user.id == 2 %}
+
             <ul class="background_brown">
-        <li class="background-brown yellow yak_font bigger_font text_center">{{site.site_name}} <a class="no_decor yellow" href="{% url 'yktrkr:favorite_delete' pk=site.pk %}">- Delete</a></li>
+                <li class="background-brown yellow yak_font bigger_font text_center">{{site.site_name}} <a class="no_decor yellow" href="{% url 'yktrkr:favorite_delete' pk=site.pk %}">- Delete</a></li>
+                {% endif %}
 
 
     </ul>

@@ -93,7 +93,7 @@ def user_logout(request):
 
 def delete_user(request, pk):
     """Displays template for deleting a computer
-    Author: Erin Meaker"""
+"""
     user = get_object_or_404(User, pk=pk)
     user.delete()
     return redirect('logout')

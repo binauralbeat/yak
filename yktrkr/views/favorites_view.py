@@ -8,12 +8,13 @@ import requests
 import json
 from django.contrib.auth import logout, login, authenticate
 from collections import defaultdict
+import os
 
 
 
 from yktrkr.models.site_model import Site
 from yktrkr.models.profile_account import *
-
+# this is one method of saving sites that I did not finish. however I plan on going back and using it eventually when scaling up
 
 def fav (request):
     site_name = request.POST.get('site_name')
@@ -30,7 +31,7 @@ def favs_post (request):
     site_name_2 = (large_data['timeSeries'])
     sliced = site_name_2[0:500:1]
     # bellow is for getting the db data
-    sites = Site.objects.all()
+    sites = Site.objects.filter(user = request.user)
     stream = []
     for site in sites:
         stream.append(site)
@@ -61,19 +62,20 @@ def favs_post (request):
          one_level_further = sliced[idx]['sourceInfo']['siteName']
          one_level_further_stage = sliced[idx]['values'][0]['value'][0]['value']
          one_level_further_deets = sliced[idx]['variable']['variableName']
-
+        # combining api data into one variable
          combo_data = one_level_further + ': ' + one_level_further_deets + ' '
          final_data = combo_data + one_level_further_stage + ' '
+        #  sending data to list
          for l in final_data:
             data_list.append(final_data)
             # print(data_list)
          stream_list = []
         #  print(final_data
-
+        # making list of api data
          if str(water) in data_list:
              stream_list.append(final_data)
              print(stream_list)
-
+            # accessing individual items in list
              for i in stream_list:
 
                 site_list = i
@@ -84,7 +86,13 @@ def favs_post (request):
     return render(request, 'favorites_list.html', {'stream': stream, 'final_data': final_data})
 
 def favorite_delete_view(request, pk):
+    '''
+    this is a function that deletes streams from favorites
+    '''
 
     stream = get_object_or_404(Site, pk=pk)
     stream.delete()
     return redirect('yktrkr:favorite_list')
+
+# @register.filter(name='user_name_filter')
+# def user_name_filter()

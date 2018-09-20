@@ -7,8 +7,13 @@ from django.db.models import Q
 import requests
 import json
 
-
+# this is all abandoned for iframe at the moment
 def boat_ramps (request):
+    '''
+    function that locates and displays the locations of nearby
+    boat ramps
+    '''
+    # api call that I will not be using, I am going to switch to google maps api in future release
     response = requests.get('https://data.nashville.gov/resource/xbru-cfzi.json/')
     launch_data = response.json()
     length_data = len(launch_data)
