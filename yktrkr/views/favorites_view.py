@@ -31,7 +31,9 @@ def favs_post (request):
     site_name_2 = (large_data['timeSeries'])
     sliced = site_name_2[0:500:1]
     # bellow is for getting the db data
-    sites = Site.objects.filter(user = request.user)
+    water = ''
+    sites = []
+    sites = Site.objects.filter(user = request.user.id)
     stream = []
     for site in sites:
         stream.append(site)
