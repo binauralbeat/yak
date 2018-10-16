@@ -16,7 +16,7 @@ def search_form(request):
 # accessing the USGS NWSI database
 def water_levels(request):
     # initial api call
-    response = requests.get('https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&stateCd=tn&parameterCd=00065&siteType=ST&siteStatus=all')
+    response = requests.get('https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&stateCd=tn&parameterCd=99236,00065&siteStatus=all')
     level_data_raw = response.json()
     large_data = level_data_raw['value']
     site_name_2 = (large_data['timeSeries'])
@@ -27,28 +27,50 @@ def water_levels(request):
     one_level_further_stage = ''
     one_level_further_deets =''
     final_data = ''
-    site_name = ''
+    site_name = []
+    site_level = []
     water_level = ''
     measurment_type = ''
     just_name = ''
+    site_list = []
+    stage_list = []
     # creating a variable to hold search input
     query = request.GET.get('q')
 
 
-    # filtering down to the keys needed from USGS api
+    # filtering down to the keys needed from USGS NWIS api
     for idx in range(0, len(sliced)):
 
-         one_level_further = sliced[idx]['sourceInfo']['siteName']
-         one_level_further_stage = sliced[idx]['values'][0]['value'][0]['value']
-         one_level_further_deets = sliced[idx]['variable']['variableName']
+         one_level_further = [sliced[idx]['sourceInfo']['siteName']]
+         if str(query) in str(one_level_further):
+            # site_name.append(one_level_further)
+            for a in one_level_further:
+                # print (a)
+                site_name = [a]
+         one_level_further_stage = [sliced[idx]['values'][0]['value'][0]['value']]
+        #  print(one_level_further_stage)
+         if str(query) in str(one_level_further):
+            print(one_level_further)
+            # site_level.append(one_level_further_stage)
+            for a in one_level_further_stage:
+                # print (a)
+                site_level = [a]
+                site_list.append(one_level_further + one_level_further_stage)
+            #   print(site_list)
+
+
+         one_level_further_deets = [sliced[idx]['variable']['variableName']]
         # combining filtered data
-         combo_data = one_level_further + ': ' + one_level_further_deets + ' '
-         final_data = combo_data + one_level_further_stage + ' '
+         combo_data = [one_level_further] +  [one_level_further_deets ]
+         final_data = [combo_data] + [one_level_further_stage ]
+        #  print(final_data)
         # comparing filterd data to search input. if match present return results
          if str(query) in final_data:
-            # for x in final_data:
+            for x in final_data:
                 idx_num = str(idx)
-                site_name = str(final_data)
+                # site_name = str(final_data)
+                # print(site_name)
+
                 just_name = str(one_level_further_stage)
                 measurment_type += str(one_level_further_deets)
 
@@ -57,5 +79,5 @@ def water_levels(request):
 
 
 
-    return render(request, 'levels.html', {'site_name': site_name, 'just_name': just_name, 'measurment_type': measurment_type, 'large_data': large_data})
+    return render(request, 'levels.html', {'site_list': site_list, 'site_name': site_name, 'site_level': site_level, 'measurment_type': measurment_type, 'large_data': large_data})
 

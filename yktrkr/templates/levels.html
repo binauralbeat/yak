@@ -22,16 +22,20 @@
         <div id="box_2">
             <form class="text_center yak_font margin_top" action="/levels" method="get">
                 {% csrf_token %}
-                <input id="search_bar" type="text" name="q" placeholder="search for a river or town" value="{{ query }}">
-                <input type="submit" value="Search">
+                <input  type="text" name="q" placeholder="search for a river or town" value="{{ query }}">
+                <input class="search_bar" type="submit" value="Search">
             </form>
             <h2 class="text_center yellow yak_font bigger_font">sites</h2>
 
-            <div>
-                <p class="background_brown text_center yellow no_decor bigger_font yak_font" name='s'>{{site_name}}<button
-                        name='{{site_name}}' class="hide" id="fav_butt">favorite</button></p>
-            </div>
+            {% for i in site_list  %}
 
+
+            <div>
+                <p class="background_brown text_center yellow no_decor bigger_font yak_font" name='s'>{{i}}-ft<button
+                    name='{{site_list}}' class="fav_butt" id="fav_butt">favorite</button></p>
+                </div>
+
+                {% endfor %}
 
 
         </div>
@@ -43,13 +47,13 @@
         let userName = '{{user.id}}'
 
 
-        $('#fav_butt').click(function () {
-            console.log('button name', $('#fav_butt').attr('name'))
+        $('.fav_butt').click(function () {
+            console.log('button name', $('.fav_butt').attr('name'))
             $.ajax({
                 url: "/favorites",
                 method: "POST",
                 data: {
-                    site_name: $('#fav_butt').attr('name'),
+                    site_name: $('.fav_butt').attr('name'),
                     user: '{{user.id}}',
                     csrfmiddlewaretoken: '{{ csrf_token }}'
                 },
@@ -60,7 +64,7 @@
             })
 
         })
-        $('#butt').click(function () {
+        $('.butt').click(function () {
             var userid = parseInt("{{user.id}}")
             var siteName = '{{just_name}}';
             $.ajax({
@@ -76,8 +80,8 @@
         });
 
         $(function() {
-            $("#search_bar").click(function() {
-              $("#fav_butt").toggleClass("show");
+            $(".search_bar").click(function() {
+              $(".fav_butt").toggleClass("show");
             });
           });
     </script>
