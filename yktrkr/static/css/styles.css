@@ -104,3 +104,9 @@ h1 {
     transform: translate(50%, 0%);
     margin: 20px;
 }
+
+.fav_butt {
+    float: right;
+    margin-right: 10px;
+    transform: translate(0px, 8px)
+}

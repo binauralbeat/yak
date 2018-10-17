@@ -23,6 +23,12 @@ def boat_ramps (request):
     boat_launch = ''
     go_launch = ''
     park_name = ''
+    query = request.GET.get('q')
+    if query == None:
+        q_str = 'near+me'
+    elif query != None:
+        q_str = str(query)
+
     for idx in range(0, len(sliced)):
 
         # ramp_data = sliced[idx]['boat_launch']
@@ -32,6 +38,6 @@ def boat_ramps (request):
         if "Yes" in boat_launch:
             for x in boat_launch:
                 go_launch = str(park_name + ' ')
-    return render(request, 'launch.html', {'go_launch': go_launch, 'length_data': length_data, 'sliced': sliced})
+    return render(request, 'launch.html', {'q_str': q_str, 'length_data': length_data, 'sliced': sliced})
 
 

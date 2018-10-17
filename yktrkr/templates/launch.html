@@ -18,12 +18,17 @@
                 <div id="box_2">
 
                         <h2 class="yellow yak_font text_center">These are the river access points near you</h1>
+                            <form class="text_center yak_font margin_top" action="/launch" method="get">
+                                {% csrf_token %}
+                                <input  type="text" name="q" placeholder="search for a river or town" value="{{ query }}">
+                                <input class="search_bar" type="submit" value="Search">
+                            </form>
                         <iframe class="move_it"
                         width="600"
                         height="450"
                         frameborder="0" style="border:0"
                         src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDMKWD14ThfiYJ1foG-sTTKzKmZCI86Sdo
-                          &q=river+access" allowfullscreen>
+                          &q=boat+or+river+access+near+{{q_str}}" allowfullscreen>
                       </iframe>
                       {% comment "add js function for altering search input" %}
                     add js function for altering search input

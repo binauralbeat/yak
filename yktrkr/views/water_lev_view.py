@@ -9,6 +9,7 @@ import requests
 import json
 import numpy as np
 import os
+import re
 # just rendering a search form
 def search_form(request):
 
