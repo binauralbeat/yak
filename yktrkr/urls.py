@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^login$', views.user_view.login_user, name='login'),
     url(r'^register$', views.register, name='register'),
     url(r'^levels$', views.water_lev_view.water_levels, name='levels'),
+    url(r'^levels_AL$', views.water_lev_view_AL.water_levels_AL, name='levels_AL'),
     url(r'^launch$', views.boat_launch_view.boat_ramps, name='launch'),
     url(r'^weather$', views.weather_view.weather, name='weather'),
     url(r'^favorites$', views.favorites_view.fav, name='favorites'),
