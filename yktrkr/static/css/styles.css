@@ -65,6 +65,14 @@ h1 {
     color: #fff700;
 }
 
+.hide {
+    display: none;
+}
+
+.show {
+    display: show;
+}
+
 .bigger_font {
     font-size: 30px;
 }
@@ -95,4 +103,10 @@ h1 {
 .move_it {
     transform: translate(50%, 0%);
     margin: 20px;
+}
+
+.fav_butt {
+    float: right;
+    margin-right: 10px;
+    transform: translate(0px, 8px)
 }

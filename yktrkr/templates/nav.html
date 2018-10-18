@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +10,11 @@
 </head>
 <body>
     <nav class="text_center background_brown">
-        <a class="yellow no_decor yak_font medium_font" href="{% url 'yktrkr:index' %}">home |</a>
-        <a class="yellow no_decor yak_font medium_font" href="{% url 'yktrkr:levels' %}">water levels |</a>
-        <a class="yellow no_decor yak_font medium_font" href="{% url 'yktrkr:weather' %}">weather |</a>
-        <a class="yellow no_decor yak_font medium_font" href="{% url 'yktrkr:launch' %}">river access |</a>
-        <a class="yellow no_decor yak_font medium_font" href="{% url 'yktrkr:logout' %}">logout</a>
+        <a class="yellow no_decor yak_font bigger_font" href="{% url 'yktrkr:index' %}">home |</a>
+        <a class="yellow no_decor yak_font bigger_font" href="{% url 'yktrkr:levels' %}">water levels |</a>
+        <a class="yellow no_decor yak_font bigger_font" href="{% url 'yktrkr:weather' %}">weather |</a>
+        <a class="yellow no_decor yak_font bigger_font" href="{% url 'yktrkr:launch' %}">river access |</a>
+        <a class="yellow no_decor yak_font bigger_font" href="{% url 'yktrkr:logout' %}">logout</a>
     </nav>
 
 </body>

@@ -7,8 +7,13 @@ from django.db.models import Q
 import requests
 import json
 
-
+# this is all abandoned for iframe at the moment
 def boat_ramps (request):
+    '''
+    function that locates and displays the locations of nearby
+    boat ramps
+    '''
+    # api call that I will not be using, I am going to switch to google maps api in future release
     response = requests.get('https://data.nashville.gov/resource/xbru-cfzi.json/')
     launch_data = response.json()
     length_data = len(launch_data)
@@ -18,6 +23,12 @@ def boat_ramps (request):
     boat_launch = ''
     go_launch = ''
     park_name = ''
+    query = request.GET.get('q')
+    if query == None:
+        q_str = 'near+me'
+    elif query != None:
+        q_str = str(query)
+
     for idx in range(0, len(sliced)):
 
         # ramp_data = sliced[idx]['boat_launch']
@@ -27,6 +38,6 @@ def boat_ramps (request):
         if "Yes" in boat_launch:
             for x in boat_launch:
                 go_launch = str(park_name + ' ')
-    return render(request, 'launch.html', {'go_launch': go_launch, 'length_data': length_data, 'sliced': sliced})
+    return render(request, 'launch.html', {'q_str': q_str, 'length_data': length_data, 'sliced': sliced})
 
 
