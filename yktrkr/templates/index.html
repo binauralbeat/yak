@@ -13,14 +13,14 @@
   {% if user.is_authenticated %}
   <div id="container_1">
     <div id="box_1">
-      <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
-    </div>
+      {% include 'logo.html' %} </div>
     <div id="box_3">
       {% include "nav.html" with nav_location=view.location %}
     </div>
     <div class="text_center" id="box_2">
       <h2 class="background_brown yellow text_center yak_font bigger_font">{{ user.username }}!</h2>
-      <a href="{% url 'yktrkr:favorite_list' %}" class="no_decor yellow text_center yak_font bigger_font">Click here for your saved sites!</a>
+      <a href="{% url 'yktrkr:favorite_list' %}" class="no_decor yellow text_center yak_font bigger_font">Click here
+        for your saved sites!</a>
 
       {% for site in sites %}
       <p class=" yellow">{{site_list}}</p>

@@ -15,8 +15,7 @@
 
     <div id="container_1">
         <div id="box_1">
-            <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
-        </div>
+                {% include 'logo.html'  %}        </div>
         <div id="box_3">
             {% include 'nav.html' with nav_location=view.location %}
         </div>
@@ -25,7 +24,7 @@
 
 
             <ul class="background_brown">
-                <li class="background-brown yellow yak_font bigger_font text_center">{{site.site_name}} <a class="no_decor yellow" href="{% url 'yktrkr:favorite_delete' pk=site.pk %}">- Delete</a></li>
+                <li class="background-brown yellow yak_font bigger_font text_center">{{site.site_name}} {{site_level}} <a class="no_decor yellow" href="{% url 'yktrkr:favorite_delete' pk=site.pk %}">- Delete</a></li>
 
 
 
