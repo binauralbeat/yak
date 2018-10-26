@@ -78,14 +78,14 @@ def favs_post (request):
         #  print(final_data
         # making list of api data
          for site in sites :
+            # if str(site) in one_level_further:
+            #    for a in one_level_further_stage:
+            #        site_level = [a]
+                #    site_list.append(one_level_further_stage)
             if str(site) in one_level_further:
                for a in one_level_further_stage:
                    site_level = [a]
-                #    site_list.append(one_level_further_stage)
-            if str(site) in one_level_further:
-               for a in one_level_further:
-                   site_level = [a]
-                   site_list.append(one_level_further + one_level_further_stage)
+                   site_list.append(site_level)
 
 
     # print(site_list)
