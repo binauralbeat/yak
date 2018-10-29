@@ -24,20 +24,20 @@
                     <input type="text" name="q" placeholder="search for a river or town" value="{{ query }}">
                     <input class="search_bar" type="submit" value="Search">
                 </form>
-                <div class="move_it">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDMKWD14ThfiYJ1foG-sTTKzKmZCI86Sdo
-                          &q=boat+or+river+access+near+{{q_str}}"
-                        allowfullscreen>
-                    </iframe>
-                </div>
                 {% comment "add js function for altering search input" %}
                 add js function for altering search input
                 {% endcomment %}
 
 
 
+            </div>
         </div>
-    </div>
+                        <div class="move_it">
+                            <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDMKWD14ThfiYJ1foG-sTTKzKmZCI86Sdo
+                                  &q=boat+or+river+access+near+{{q_str}}"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
 
 
 </body>

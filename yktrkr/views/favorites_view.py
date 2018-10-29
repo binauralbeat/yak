@@ -88,6 +88,7 @@ def favs_post (request):
                    site_list.append(site_level)
 
 
+
     # print(site_list)
 
     return render(request, 'favorites_list.html', {'site_list': site_list,'stream': stream, 'final_data': final_data})

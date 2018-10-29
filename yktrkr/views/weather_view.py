@@ -21,5 +21,6 @@ def weather (request):
         q_str = 'nashville'
     elif query != None:
         q_str = str(query)
+        print (q_str)
 
     return render(request, 'weather.html', {'q_str': q_str})
