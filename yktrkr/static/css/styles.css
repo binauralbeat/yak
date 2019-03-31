@@ -11,7 +11,7 @@ body {
 #container_1 {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: 30vw auto auto;
     background-color: rgba(5, 5, 5, 0.3);
     width: 75%;
     margin: auto;
@@ -54,7 +54,7 @@ h1 {
     margin: auto;
     /* padding: 20px; */
     /* display: block; */
-    transform: translate(32%, 16%);
+    transform: translate(32%, 170%);
 
 
 }

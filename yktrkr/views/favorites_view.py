@@ -27,7 +27,6 @@ def favs_post (request):
     # the following is for getting the api data
     response = requests.get('https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&stateCd=tn&parameterCd=00065&siteType=ST&siteStatus=all')
     level_data_raw = response.json()
-    # print(level_data_raw)
     large_data = level_data_raw['value']
     site_name_2 = (large_data['timeSeries'])
     sliced = site_name_2[0:500:1]
@@ -71,10 +70,10 @@ def favs_post (request):
          combo_data = one_level_further + ': ' + one_level_further_deets + ' '
          final_data = combo_data + one_level_further_stage + ' '
         #  sending data to list
-         for l in final_data:
-            data_list.append(final_data)
-            # print(data_list)
-         stream_list = []
+        #  for l in final_data:
+        #     data_list.append(final_data)
+        #     # print(data_list)
+        #  stream_list = []
         #  print(final_data
         # making list of api data
          for site in sites :
@@ -82,10 +81,10 @@ def favs_post (request):
             #    for a in one_level_further_stage:
             #        site_level = [a]
                 #    site_list.append(one_level_further_stage)
-            if str(site) in one_level_further:
-               for a in one_level_further_stage:
-                   site_level = [a]
-                   site_list.append(site_level)
+            if str(site) in str(one_level_further):
+            #    for a in one_level_further_stage:
+            #        site_level = [a]
+                   site_list.append(one_level_further + " - " + one_level_further_stage + " ft")
 
 
 

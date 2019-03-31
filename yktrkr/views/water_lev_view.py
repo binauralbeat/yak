@@ -52,18 +52,21 @@ def water_levels(request):
                 site_name = [a]
          one_level_further_stage = [sliced[idx]['values'][0]['value'][0]['value']]
         #  print(one_level_further_stage)
+         one_level_further_deets = [sliced[idx]['variable']['variableName']]
          if str(query) in str(one_level_further):
             print(one_level_further)
             # site_level.append(one_level_further_stage)
             for a in one_level_further_stage:
                 # print (a)
                 site_level = [a]
-                site_list.append(one_level_further + one_level_further_stage)
+                site_list.append(one_level_further + one_level_further_stage + one_level_further_deets)
             #   print(site_list)
 
+        #  elif str(query) not in str(one_level_further):
+        #      site_list = [["Sorry, we couldn't find anything."]]
 
 
-         one_level_further_deets = [sliced[idx]['variable']['variableName']]
+
         # combining filtered data
          combo_data = [one_level_further] +  [one_level_further_deets ]
          final_data = [combo_data] + [one_level_further_stage ]
