@@ -22,7 +22,7 @@
         <div id="box_2">
             <form class="text_center yak_font margin_top" action="/levels" method="get">
                 {% csrf_token %}
-                <input type="text" name="q" placeholder="search for a river or town" value="{{ query }}">
+                <input type="text" name="q" placeholder="search for a river or town" value="{{ query }}" onkeyup="caps(this)">
                 <input class="search_bar" type="submit" value="Search">
             </form>
             <h2 class="text_center yellow yak_font bigger_font">sites</h2>
@@ -57,6 +57,17 @@
     <script>
         let site_name = '{{just_name}}'
         let userName = '{{user.id}}'
+
+
+
+            function caps(element){
+
+                element.value = element.value.toUpperCase();
+
+            }
+
+
+
 
 
         $('.fav_butt').click(function () {
