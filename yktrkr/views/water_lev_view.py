@@ -39,13 +39,14 @@ def water_levels(request):
     stage_list = []
     # creating a variable to hold search input
     query = request.GET.get('q')
+    q_upper =str(query).upper()
 
 
     # filtering down to the keys needed from USGS NWIS api
     for idx in range(0, len(sliced)):
 
          one_level_further = [sliced[idx]['sourceInfo']['siteName']]
-         if str(query) in str(one_level_further):
+         if str(q_upper) in str(one_level_further):
             # site_name.append(one_level_further)
             for a in one_level_further:
                 # print (a)
@@ -53,7 +54,7 @@ def water_levels(request):
          one_level_further_stage = [sliced[idx]['values'][0]['value'][0]['value']]
         #  print(one_level_further_stage)
          one_level_further_deets = [sliced[idx]['variable']['variableName']]
-         if str(query) in str(one_level_further):
+         if str(q_upper) in str(one_level_further):
             print(one_level_further)
             # site_level.append(one_level_further_stage)
             for a in one_level_further_stage:
@@ -72,7 +73,7 @@ def water_levels(request):
          final_data = [combo_data] + [one_level_further_stage ]
         #  print(final_data)
         # comparing filterd data to search input. if match present return results
-         if str(query) in final_data:
+         if str(q_upper) in final_data:
             for x in final_data:
                 idx_num = str(idx)
                 # site_name = str(final_data)
