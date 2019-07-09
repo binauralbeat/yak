@@ -1,38 +1,38 @@
-{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>yak</title>
-        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-    </head>
+<head>
+    <title>yak</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-    <body>
-            {% block main_stuff %}
+</head>
 
-
-            <div id="container_1">
-              <div id="box_1">
-                <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
-              </div>
-              <div id="box_3">
-              </div>
-              <div id="box_2">
-                    <form class="center yellow yak_font" id="login_form" method="post" action="{% url 'yktrkr:login' %}">
-                            {% csrf_token %}
-                            Username: <input type="text" name="username" value="" size="50" />
-                            <br />
-                            Password: <input type="password" name="password" value="" size="50" />
-                            <br />
-
-                            <input class=" yak_font no_decor" type="submit" value="submit" />
-                        </form>
-              </div>
-            </div>
-
-            {% endblock main_stuff %}
+<body>
 
 
 
-    </body>
+    <div id="container_1">
+        <div id="box_1">
+            {% include 'logo.html' %} </div>
+        <div id="box_3">
+        </div>
+        <div id="box_2">
+            <form class="center yellow yak_font" id="login_form" method="post" action="{% url 'yktrkr:login' %}">
+                {% csrf_token %}
+                Username: <input type="text" name="username" value="" size="50" />
+                <br />
+                Password: <input type="password" name="password" value="" size="50" />
+                <br />
+
+                <input class=" yak_font no_decor" type="submit" value="submit" />
+            </form>
+        </div>
+    </div>
+
+
+
+
+</body>
+
 </html>

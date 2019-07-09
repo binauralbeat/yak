@@ -1,32 +1,40 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Yak Weather</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Yak Weather</title>
 </head>
+
 <body>
         <div id="container_1">
                 <div id="box_1">
-                    <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
-                </div>
+                        {% include 'logo.html' %} </div>
                 <div id="box_3">
-                    {% include 'nav.html' with nav_location=view.location %}
+                        {% include 'nav.html' with nav_location=view.location %}
                 </div>
                 <div id="box_2">
-                        <form class="text_center yak_font margin_top" action="/weather" method="get">
-                            {% csrf_token %}
-                            <input  type="text" name="q" placeholder="search for a river or town" value="{{ query }}">
-                            <input class="search_bar" type="submit" value="Search">
-                        </form>
-                    <div class="margin_top">
-                            <a class="weatherwidget-io" href="https://forecast7.com/en/36d16n86d78/{{q_str}}/?unit=us" data-label_1="{{q_str}}" data-label_2="WEATHER" data-theme="orange" data-basecolor="rgb(83, 59, 30, .6)" data-textcolor="#fff700" data-highcolor="#fff700" data-lowcolor="#7cd8e9" data-suncolor="#fff700" data-mooncolor="#96eaf5" data-cloudcolor="#fff700" data-cloudfill="#fff700" data-raincolor="#71daed" >NASHVILLE WEATHER</a>
-                            <script>
-                            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-                            </script>
-                    </div>
+                        {% comment %}
+
+                        <!-- <form class="text_center yak_font margin_top" action="/weather" method="get">
+                                {% csrf_token %}
+                                <input  type="text" name="q" placeholder="search for a river or town" value="{{ query }}">
+                                <input class="search_bar" type="submit" value="Search">
+                        </form> -->
+                        {% endcomment %}
+                        <div class="margin_top">
+                                        <div style="width: 700px;"><iframe style="display: block;" src="https://cdnres.willyweather.com/widget/loadView.html?id=101488" width="700" height="520" frameborder="0"  scrolling="no"></iframe><a style="text-indent: -9999em;margin: -20px 0 0 0;display: block;position: relative;z-index: 1;height: 20px" href="https://www.willyweather.com/tn/davidson-county/nashville.html" rel="nofollow">nashville forecasts</a></div>
+                                {% comment %}
+
+                                <!-- <a class="weatherwidget-io" href="https://forecast7.com/en/36d16n86d78/{{q_str}}/?unit=us" data-label_1="{{q_str}}" data-label_2="WEATHER" data-theme="orange" data-basecolor="rgb(83, 59, 30, .6)" data-textcolor="#fff700" data-highcolor="#fff700" data-lowcolor="#7cd8e9" data-suncolor="#fff700" data-mooncolor="#96eaf5" data-cloudcolor="#fff700" data-cloudfill="#fff700" data-raincolor="#71daed" >NASHVILLE WEATHER</a>
+                                <script>
+                                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                                </script> -->
+                                {% endcomment %}
+                        </div>
 
                 </div>
 
@@ -36,4 +44,5 @@
 
 
 </body>
+
 </html>

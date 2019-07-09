@@ -1,37 +1,55 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Yak Favorites</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Yak Favorites</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
 
-</head>
-
-<body>
+    <body>
+            {% comment %}
+             logo and nav bar included below
+             see respective templates to make changes or review
+            {% endcomment %}
 
     <div id="container_1">
         <div id="box_1">
-            <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
-        </div>
+            {% include 'logo.html' %} </div>
         <div id="box_3">
             {% include 'nav.html' with nav_location=view.location %}
         </div>
-        <div class="background-brown" id="box_2">
-        {% for site in stream  %}
+        <div  id="box_2">
 
 
-            <ul class="background_brown">
-                <li class="background-brown yellow yak_font bigger_font text_center">{{site.site_name}} <a class="no_decor yellow" href="{% url 'yktrkr:favorite_delete' pk=site.pk %}">- Delete</a></li>
+            {% comment %}
+             this is where saved rivers are displayed
+            {% endcomment %}
+
+
+            {% for i in site_list  %}
+            {% comment %}
+
+            {% endcomment %}
+            <div>
+                <p class="yellow yak_font bigger_font text_center">
+                    {{i}}
+                    {% for site in stream|slice:"1" %}
+                    <a class="no_decor yak_font bigger_font yellow" href="{% url 'yktrkr:favorite_delete' pk=site.pk %}">- Delete</a>
+                    {% endfor %}
+                </p>
+            </div>
+            <div>
+            </div>
+            {% endfor %}
 
 
 
-    </ul>
-        {% endfor %}
-    </div>
+
+        </div>
 
 
 

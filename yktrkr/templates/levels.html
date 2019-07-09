@@ -14,7 +14,7 @@
 <body>
     <div id="container_1">
         <div id="box_1">
-            <h1 class="text_center">yak <img class="smaller_img" src="/static/image/yak_2.png" alt=""></h1>
+            {% include 'logo.html' %}
         </div>
         <div id="box_3">
             {% include 'nav.html' with nav_location=view.location %}
@@ -22,30 +22,28 @@
         <div id="box_2">
             <form class="text_center yak_font margin_top" action="/levels" method="get">
                 {% csrf_token %}
-                <input  type="text" name="q" placeholder="search for a river or town" value="{{ query }}">
+                <input type="text" name="q" placeholder="search for a river or town" value="{{ query }}" onkeyup="caps(this)">
                 <input class="search_bar" type="submit" value="Search">
             </form>
             <h2 class="text_center yellow yak_font bigger_font">sites</h2>
 
-            {% for i in site_list  %}
+            {% for i in site_list %}
 
 
             <div>
-                <p class="background_brown text_center yellow no_decor bigger_font yak_font" name='s'>{{i.0}} - {{i.1}}-ft  <button
-                    name='{{site_list}}' class="fav_butt" id="fav_butt">favorite</button></p>
-                </div>
 
-                {% endfor %}
-            {% for x in site_list_AL  %}
+                    <p style="font-size: calc(16px + 1vw);"class=" text_center yellow no_decor bigger_font yak_font" name='s'>{{i.0}} -
+                        {{i.1}}-ft <img  name='{{i.0}}' src="/static/image/favorites-star-svgrepo-com.svg" style="width:25px;" class="fav_butt yellow" id="fav_butt"></p>
 
 
+            </div>
+            {% empty %}
             <div>
-                <p class="background_brown text_center yellow no_decor bigger_font yak_font" name='s'>{{X}}-ft-<button
-                    name='{{site_list_AL}}' class="fav_butt" >favorite</button></p>
-                </div>
+                <p style="font-size: calc(16px + 1vw);"class=" text_center yellow no_decor bigger_font yak_font">Type a River or Town Name to Get Started!</p>
 
-                {% endfor %}
+            </div>
 
+            {% endfor %}
 
         </div>
     </div>
@@ -56,13 +54,24 @@
         let userName = '{{user.id}}'
 
 
+
+            function caps(element){
+
+                element.value = element.value.toUpperCase();
+
+            }
+
+
+
+
+
         $('.fav_butt').click(function () {
-            console.log('button name', $('.fav_butt').attr('name'))
+            console.log('button name', $(this).attr('name'))
             $.ajax({
                 url: "/favorites",
                 method: "POST",
                 data: {
-                    site_name: $('.fav_butt').attr('name'),
+                    site_name: $(this).attr('name'),
                     user: '{{user.id}}',
                     csrfmiddlewaretoken: '{{ csrf_token }}'
                 },
@@ -88,11 +97,11 @@
             });
         });
 
-        $(function() {
-            $(".search_bar").click(function() {
-              $(".fav_butt").toggleClass("show");
+        $(function () {
+            $(".search_bar").click(function () {
+                $(".fav_butt").toggleClass("show");
             });
-          });
+        });
     </script>
 </body>
 

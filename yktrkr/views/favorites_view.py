@@ -45,6 +45,7 @@ def favs_post (request):
 
 
 
+
 # these are for later use
     one_level_further = ''
     one_level_further_stage = ''
@@ -53,7 +54,8 @@ def favs_post (request):
     site_name = ''
     water_level = ''
     measurment_type = ''
-    site_list = ''
+    site_list = []
+    site_level = ''
     # print(sites)
 
 
@@ -68,24 +70,27 @@ def favs_post (request):
          combo_data = one_level_further + ': ' + one_level_further_deets + ' '
          final_data = combo_data + one_level_further_stage + ' '
         #  sending data to list
-         for l in final_data:
-            data_list.append(final_data)
-            # print(data_list)
-         stream_list = []
+        #  for l in final_data:
+        #     data_list.append(final_data)
+        #     # print(data_list)
+        #  stream_list = []
         #  print(final_data
         # making list of api data
-         if str(water) in data_list:
-             stream_list.append(final_data)
-             print(stream_list)
-            # accessing individual items in list
-             for i in stream_list:
+         for site in sites :
+            # if str(site) in one_level_further:
+            #    for a in one_level_further_stage:
+            #        site_level = [a]
+                #    site_list.append(one_level_further_stage)
+            if str(site) in str(one_level_further):
+            #    for a in one_level_further_stage:
+            #        site_level = [a]
+                   site_list.append(one_level_further + " - " + one_level_further_stage + " ft")
 
-                site_list = i
-                print(i,'79')
+
 
     # print(site_list)
 
-    return render(request, 'favorites_list.html', {'stream': stream, 'final_data': final_data})
+    return render(request, 'favorites_list.html', {'site_list': site_list,'stream': stream, 'final_data': final_data})
 
 def favorite_delete_view(request, pk):
     '''
