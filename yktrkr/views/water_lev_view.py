@@ -17,7 +17,14 @@ def search_form(request):
 # accessing the USGS NWSI database
 def water_levels(request):
     # initial api call
-    response = requests.get('https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&stateCd=TN&parameterCd=00065&siteStatus=active')
+    state_data = request.GET.get('state')
+    if state_data is None:
+        state = "TN"
+
+    elif state_data is not None:
+
+        state = str(state_data)
+    response = requests.get(f'https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&stateCd={state}&parameterCd=00065&siteStatus=active')
 
     level_data_raw = response.json()
     large_data = level_data_raw['value']
@@ -40,6 +47,7 @@ def water_levels(request):
     # creating a variable to hold search input
     query = request.GET.get('q')
     q_upper =str(query).upper()
+
 
 
     # filtering down to the keys needed from USGS NWIS api
