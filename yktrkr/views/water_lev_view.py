@@ -44,6 +44,7 @@ def water_levels(request):
     just_name = ''
     site_list = []
     stage_list = []
+    site_code = ''
     # creating a variable to hold search input
     query = request.GET.get('q')
     q_upper =str(query).upper()
@@ -59,6 +60,12 @@ def water_levels(request):
             for a in one_level_further:
                 # print (a)
                 site_name = [a]
+         one_level_further_site = [sliced[idx]['sourceInfo']['siteCode'][0]['value']]
+         if str(q_upper) in str(one_level_further):
+            # site_name.append(one_level_further)
+            for a in one_level_further_site:
+                # print (a)
+                site_code = a
          one_level_further_stage = [sliced[idx]['values'][0]['value'][0]['value']]
         #  print(one_level_further_stage)
          one_level_further_deets = [sliced[idx]['variable']['variableName']]
@@ -68,7 +75,7 @@ def water_levels(request):
             for a in one_level_further_stage:
                 # print (a)
                 site_level = [a]
-                site_list.append(one_level_further + one_level_further_stage + one_level_further_deets)
+                site_list.append(one_level_further + one_level_further_stage + one_level_further_deets + one_level_further_site)
             #   print(site_list)
 
         #  elif str(query) not in str(one_level_further):
@@ -95,7 +102,7 @@ def water_levels(request):
 
 
 
-    return render(request, 'levels.html', {'site_list': site_list, 'site_name': site_name, 'site_level': site_level, 'measurment_type': measurment_type, 'large_data': large_data})
+    return render(request, 'levels.html', {'site_list': site_list, 'site_name': site_name, 'site_level': site_level, 'measurment_type': measurment_type, 'large_data': large_data, 'site_code': site_code})
 
 
 
